@@ -1,0 +1,7 @@
+{
+  "eslint.enable": false,
+  "phpformatter.composer": true,
+  "phpformatter.arguments": ["--rules=@psr2"],
+  "phpformatter.phpPath": "/usr/local/bin/php",
+  "php.validate.executablePath": "/usr/local/bin/php"
+}

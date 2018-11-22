@@ -1,0 +1,2 @@
+"weber_inventory_tag *","category **","manufacturer *","vendor","model *","wired_mac_address **","wireless_mac_address **","serial_number *","username *","building_code *","room_number *","acquisition_date","cost *","po_number","org_code *","short_description","long_description"
+"start all entries on line 3","[blank, computer, tablet, projector, document camera, extron]","dell","starwest","abc123","ab:ab:ab:ab:ab:ab","","abc-123","johndoe","LP","203a","YYYY-MM-DD","123","po123","23423","john's computer","something to explain that might be helpful"

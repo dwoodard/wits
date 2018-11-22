@@ -1,0 +1,28 @@
+---
+web:
+  image: registry.weber.edu/wits/wits_web
+  container_name: "${CONTAINER_NAME}"
+  # links:
+  # - db:mysql
+  volumes:
+  - "/data/storage:/var/www/html/storage/app/public"
+  ports:
+  - 80:8080
+  - 443:8443
+  environment:
+  - APP_SEED=false
+
+phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  restart: always
+  container_name: ${CONTAINER_NAME}
+  ports:
+    - 8181:80
+  environment:
+    PMA_USERNAME: root
+    PMA_PASSWORD: "@dmin4wits"
+    PMA_HOST: wits.weber.edu
+    PMA_PORT: 3306
+    MYSQL_PORT_3306_TCP_ADDR: wits.weber.edu
+    PMA_ABSOLUTE_URI: "https://wits.weber.edu/phpmyadmin/"
+

@@ -1,0 +1,31 @@
+---
+web:
+  image: registry.weber.edu/wits/wits_web
+  container_name: "${CONTAINER_NAME}"
+  links:
+  - db:mysql
+  volumes:
+  - "/data/storage:/var/www/html/storage/app/public"
+  ports:
+  - 80:80
+  - 443:443
+  environment:
+  - APP_SEED=true
+db:
+  image: mysql:5.7
+  container_name: "${CONTAINER_NAME}"
+  environment:
+  - MYSQL_ROOT_PASSWORD=root
+  ports:
+  - 3306:3306
+phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  container_name: "${CONTAINER_NAME}"
+  links:
+  - db:mysql
+  ports:
+  - 8181:80
+  - 8282:443
+  environment:
+    MYSQL_USERNAME: root
+    MYSQL_ROOT_PASSWORD: root

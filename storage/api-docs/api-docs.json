@@ -1,0 +1,98 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "WITS API",
+        "version": "1.0"
+    },
+    "host": "localhost",
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/v1/assets": {
+            "get": {
+                "tags": [
+                    "Asset"
+                ],
+                "summary": "get all Assets",
+                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                "operationId": "findPetsByTags",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "tags",
+                        "in": "query",
+                        "description": "Tags to filter by",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid tag value"
+                    }
+                },
+                "deprecated": false,
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/v1/campus": {
+            "get": {
+                "tags": [
+                    "Campus"
+                ],
+                "summary": "get all campuses",
+                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                "operationId": "findPetsByTags",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "description": "Class ApiController",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "description": "Class ApiController",
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "name",
+                "email"
+            ]
+        }
+    }
+}

@@ -1,0 +1,25 @@
+FROM wits_base
+
+COPY . ./
+RUN composer dump-autoload --optimize && \
+  composer run-script post-install-cmd
+
+
+# ADD vendor /var/www/html/vendor
+ADD .env.example /var/www/html/.env
+RUN php artisan key:generate
+
+RUN chgrp -R www-data storage bootstrap/cache
+RUN chmod -R ug+rwx storage bootstrap/cache
+RUN chmod -Rf 0777 storage
+RUN chmod a+x ./startup.sh
+# RUN chmod 600 ./storage/oauth-public.key
+# RUN chown 600 ./storage/oauth-public.key
+RUN chmod a+x ./wait-for-it.sh
+
+
+RUN cat .env
+
+RUN composer dumpautoload 
+
+CMD ./wait-for-it.sh db:3306 --timeout=45 -- ./startup.sh

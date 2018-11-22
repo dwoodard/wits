@@ -1,0 +1,39 @@
+---
+docker_base:
+  script:
+    # Create a base image of app and upload to docker hub
+    # check if docker image for wits base is the same
+    - './checkdiff.sh'
+  stage: build
+
+build:
+  script:
+    # Delete Docker Image build from fresh
+    - 'rm -rf data'
+    - 'docker build --no-cache -t  registry.weber.edu/wits/wits_web -f Dockerfile.web .'
+    - 'docker-compose -f docker-compose-build.yml up -d --force-recreate'
+
+    - 'echo "https://wits-dev.weber.edu"'
+    # - 'pwd' #/home/gitlab-runner/builds/5d93fc63/0/dustinwoodard/wits
+    # - 'whoami' #gitlab-runner
+    # - 'docker exec wits_web_1 chmod -Rf 0777 storage' # /var/www/html
+    # - 'docker exec wits_web_1 whoami' # root
+  stage: build
+
+phpunit:
+  script:
+    - 'docker exec wits_web_1 ./vendor/phpunit/phpunit/phpunit'
+  stage: test
+
+# dusk:
+#   script:
+#     - 'docker exec wits_web_1 php artisan dusk'
+#   allow_failure: true
+#   stage: test
+
+publish:
+  script:
+    - 'ansible-vault view /home/gitlab-runner/mypassword.txt --vault-password-file /home/gitlab-runner/vault | docker login registry.weber.edu --username dustinwoodard --password-stdin'
+    - 'docker push registry.weber.edu/wits/wits_web'
+    - 'ssh wits /opt/deploy.sh'
+  stage: deploy

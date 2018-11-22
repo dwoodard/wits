@@ -1,0 +1,45 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "/wits/bootstrap-wits.scss";
+
+
+@import "node_modules/keen-ui/dist/keen-ui.min";
+@import "keen-ui.scss";
+
+@import "vue-multiselect";
+
+// toastr
+@import "node_modules/toastr/toastr";
+
+// jquery-confirm
+@import "node_modules/jquery-confirm/css/jquery-confirm";
+
+@import "sb-admin-2.css";
+
+
+//@import "node_modules/font-awesome/scss/font-awesome";
+@import "node_modules/@fortawesome/fontawesome/styles";
+
+@import "helpers";
+@import "bs-tinynavbar";
+@import "/wits/menus.scss";
+
+
+//xeditable
+@import "./../js/vendor/xeditable/bs3-editable/css/bootstrap-editable.css";
+
+
+//select2
+@import "node_modules/select2/dist/css/select2.min";
+
+//Pages
+@import "/wits/pages/inventory.scss";
+
+
