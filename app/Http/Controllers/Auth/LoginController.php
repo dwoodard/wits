@@ -47,6 +47,12 @@ class LoginController extends Controller
     public function login(Request $request)
     {
        // dd(Auth::check());
+
+        //chirocat demo
+        Auth::loginUsingId(26);
+
+        // Redirect Home
+        return redirect('/app');
     }
 
     public function logout(Request $request)

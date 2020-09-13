@@ -21,7 +21,11 @@ class RestSearch
         //https://localhost:3000/asset?wherein=department_id,1,2,3&with=media,department,room,room.roomstyle,room.building,room.building.campus,checkout,category,properties,users
         public static function all($model)
         {
-            $search = !empty(request()->query('search')) ? explode(',', request()->query('search')) : null;
+            if (request()->query('search')) {
+                $search = explode(',', request()->query('search'));
+            } else {
+                $search = null;
+            }
             $searchColumns = !empty(request()->query('searchColumns')) ? explode(',', request()->query('searchColumns')) : [];
             $with = !empty(request()->query('with')) ? explode(',', request()->query('with')) : [];
             $fields = !empty(request()->query('fields')) ? explode(',',request()->query('fields')) : null;

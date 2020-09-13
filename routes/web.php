@@ -20,7 +20,7 @@ Route::get('/user', function(){
 
 
 
-Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@login'] )->middleware('saml');
+Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@login'] );//->middleware('saml');
 Route::get('/logout', [ 'as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 Route::post('/saml-response', 'Auth\LoginController@saml');
 
